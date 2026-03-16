@@ -1,0 +1,232 @@
+:root {
+  --bg: #f2ecdf;
+  --bg-deep: #d8c6a5;
+  --ink: #1f2a2c;
+  --muted: #5d625f;
+  --card: rgba(255, 250, 240, 0.78);
+  --line: rgba(31, 42, 44, 0.14);
+  --accent: #9b4d2f;
+  --accent-soft: #ddb892;
+  --shadow: 0 24px 60px rgba(58, 40, 20, 0.18);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  font-family: "Manrope", sans-serif;
+  color: var(--ink);
+  background:
+    radial-gradient(circle at top left, rgba(255, 255, 255, 0.7), transparent 34%),
+    linear-gradient(135deg, var(--bg) 0%, #e7dcc3 48%, var(--bg-deep) 100%);
+}
+
+.backdrop {
+  position: fixed;
+  inset: 0;
+  background:
+    linear-gradient(rgba(255, 255, 255, 0.14) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.14) 1px, transparent 1px);
+  background-size: 28px 28px;
+  mask-image: radial-gradient(circle at center, black 45%, transparent 95%);
+  pointer-events: none;
+}
+
+.shell {
+  position: relative;
+  width: min(1100px, calc(100% - 32px));
+  margin: 0 auto;
+  padding: 40px 0 64px;
+}
+
+.hero,
+.panel {
+  backdrop-filter: blur(12px);
+  background: var(--card);
+  border: 1px solid rgba(255, 255, 255, 0.45);
+  box-shadow: var(--shadow);
+}
+
+.hero {
+  border-radius: 28px;
+  padding: 36px;
+  overflow: hidden;
+  position: relative;
+}
+
+.hero::after {
+  content: "";
+  position: absolute;
+  width: 220px;
+  height: 220px;
+  right: -40px;
+  top: -40px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(155, 77, 47, 0.22), transparent 70%);
+}
+
+.eyebrow,
+.meta-label,
+.day-label {
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  font-size: 0.72rem;
+  color: var(--muted);
+  margin: 0 0 10px;
+}
+
+h1,
+h2,
+h3 {
+  font-family: "Cormorant Garamond", serif;
+  margin: 0;
+}
+
+h1 {
+  font-size: clamp(3rem, 7vw, 5.6rem);
+  line-height: 0.96;
+  max-width: 8ch;
+}
+
+.lede {
+  max-width: 58ch;
+  font-size: 1.02rem;
+  line-height: 1.7;
+  color: var(--muted);
+  margin: 18px 0 0;
+}
+
+.hero-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 18px;
+  margin-top: 28px;
+}
+
+.hero-meta div {
+  min-width: 180px;
+  padding: 14px 16px;
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.5);
+  border: 1px solid rgba(31, 42, 44, 0.08);
+}
+
+.panel {
+  margin-top: 24px;
+  border-radius: 28px;
+  padding: 28px;
+}
+
+.panel-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: end;
+  gap: 16px;
+  margin-bottom: 22px;
+}
+
+h2 {
+  font-size: clamp(2rem, 4vw, 3rem);
+}
+
+.count-pill,
+.day-chip {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 999px;
+  padding: 8px 14px;
+  background: #fff5eb;
+  border: 1px solid rgba(155, 77, 47, 0.18);
+  color: var(--accent);
+  font-size: 0.9rem;
+}
+
+.timeline {
+  display: grid;
+  gap: 18px;
+}
+
+.day-card {
+  position: relative;
+  padding: 22px;
+  border-radius: 24px;
+  background: rgba(255, 255, 255, 0.56);
+  border: 1px solid var(--line);
+  overflow: hidden;
+}
+
+.day-card::before {
+  content: "";
+  position: absolute;
+  inset: 0 auto 0 0;
+  width: 6px;
+  background: linear-gradient(180deg, var(--accent), #cf8f57);
+}
+
+.day-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: start;
+  gap: 16px;
+}
+
+.day-title {
+  font-size: 2rem;
+}
+
+.entry-list {
+  list-style: none;
+  padding: 0;
+  margin: 18px 0 0;
+  display: grid;
+  gap: 12px;
+}
+
+.entry-list li {
+  padding: 14px 16px;
+  border-radius: 18px;
+  background: rgba(242, 236, 223, 0.74);
+  border: 1px solid rgba(31, 42, 44, 0.08);
+  line-height: 1.6;
+}
+
+.empty-state {
+  padding: 28px;
+  border-radius: 24px;
+  text-align: center;
+  border: 1px dashed rgba(31, 42, 44, 0.24);
+  background: rgba(255, 255, 255, 0.45);
+}
+
+.empty-state pre {
+  font-family: monospace;
+  line-height: 1;
+  font-size: 0.72rem;
+  display: inline-block;
+  text-align: left;
+  margin: 0 0 12px;
+  color: var(--accent);
+}
+
+@media (max-width: 720px) {
+  .shell {
+    width: min(100% - 20px, 1100px);
+    padding-top: 20px;
+  }
+
+  .hero,
+  .panel {
+    padding: 22px;
+    border-radius: 22px;
+  }
+
+  .panel-head,
+  .day-head {
+    flex-direction: column;
+    align-items: start;
+  }
+}
